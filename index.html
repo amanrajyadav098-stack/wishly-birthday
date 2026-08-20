@@ -341,6 +341,7 @@ const $ = id => document.getElementById(id);
 let theme="normal";
 let surprise=null;
 let memoryIndex=0;
+let currentStep=0;
 let stream=null;
 
 
@@ -806,6 +807,7 @@ ${escapeHtml(e.message)}
 
 function showStep(step){
 
+currentStep=step;
 let t=T();
 
 let name=
@@ -892,7 +894,7 @@ muted
 
 </div>
 
-<div class="candle">
+<div id="candleVisual" class="candle">
 🔥 🕯️ 🕯️ 🕯️ 🔥
 </div>
 
@@ -1172,7 +1174,7 @@ sum/values.length
 
 if(volume>0.12){
 
-$("candle").textContent=
+$("candleVisual").textContent=
 "✨ 🎂 ✨";
 
 $("blowNext")
@@ -1228,6 +1230,11 @@ return String(value || "")
 .replace(/'/g,"&#039;");
 
 }
+
+
+$("receiverLanguage").addEventListener("change",()=>{
+if(surprise) showStep(currentStep);
+});
 
 
 /* START */
