@@ -30,5 +30,39 @@ function render(){$("pn").textContent=$("name").value||"Someone special";$("pm")
 function img(file){return new Promise((ok,no)=>{if(!file)return ok(null);let r=new FileReader();r.onload=()=>{let im=new Image();im.onload=()=>{let s=Math.min(1,900/im.width,900/im.height),c=document.createElement("canvas");c.width=im.width*s;c.height=im.height*s;c.getContext("2d").drawImage(im,0,0,c.width,c.height);ok(c.toDataURL("image/jpeg",.72))};im.src=r.result};r.onerror=no;r.readAsDataURL(file)})}
 async function post(u,b){let r=await fetch(u,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(b)}),d=await r.json();if(!r.ok)throw Error(d.error||"Request failed");return d}
 $("create").onclick=async()=>{try{$("status").textContent="Preparing...";if(!$("name").value||!$("birthday").value)throw Error("Enter name and birthday.");let ps=[...document.querySelectorAll(".photo")],cs=[...document.querySelectorAll(".cap")],mem=[];for(let i=0;i<ps.length;i++)if(ps[i].files[0])mem.push({image:await img(ps[i].files[0]),caption:cs[i].value});let final=await img($("finalImage").files[0]);let payload={name:$("name").value,birthday:$("birthday").value,language:$("language").value,message:$("message").value,memoryLine:$("memoryLine").value,theme,memories:mem,finalGreeting:$("finalGreeting").value,finalImage:final};$("status").textContent="Opening payment...";let o=await post("/api/create-order",{amount:39});new Razorpay({key:o.key_id,amount:o.amount,currency:"INR",name:"Wishly",description:"Birthday Surprise",order_id:o.id,handler:async r=>{try{await post("/api/verify-payment",r);let s=await post("/api/create-surprise",{...payload,paymentId:r.razorpay_payment_id,orderId:r.razorpay_order_id});$("url").textContent=s.url;$("share").classList.remove("hidden");$("status").textContent="Done 🎉"}catch(e){$("status").textContent=e.message}},theme:{color:"#ff58ad"}}).open()}catch(e){$("status").textContent=e.message}};
-$("copy").onclick=()=>navigator.clipboard.writeText($("url").textContent);
+$("copy").onclick = async () => {
+  const text = $("url").textContent;
+
+  try {
+    await navigator.clipboard.writeText(text);
+    $("copy").textContent = "Copied ✓";
+
+    setTimeout(() => {
+      $("copy").textContent = "Copy link";
+    }, 2000);
+
+  } catch (e) {
+    const textarea = document.createElement("textarea");
+    textarea.value = text;
+    textarea.style.position = "fixed";
+    textarea.style.opacity = "0";
+
+    document.body.appendChild(textarea);
+    textarea.focus();
+    textarea.select();
+
+    try {
+      document.execCommand("copy");
+      $("copy").textContent = "Copied ✓";
+    } catch (err) {
+      $("status").textContent = "Copy failed. Please copy the link manually.";
+    }
+
+    document.body.removeChild(textarea);
+
+    setTimeout(() => {
+      $("copy").textContent = "Copy link";
+    }, 2000);
+  }
+};
 </script></body></html>
