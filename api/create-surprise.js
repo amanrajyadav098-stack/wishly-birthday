@@ -65,10 +65,14 @@ export default async function handler(req, res) {
       });
     }
 
+    const productionUrl =
+      process.env.VERCEL_PROJECT_PRODUCTION_URL ||
+      'wishly-birthday-t2v7-aman-raaj.vercel.app';
+
     return res.status(200).json({
-  success: true,
-  url: `https://wishly-birthday-t2v7.vercel.app/?surprise=${slug}`
-});
+      success: true,
+      url: `https://${productionUrl}/?surprise=${slug}`
+    });
 
   } catch (error) {
     return res.status(500).json({
