@@ -65,17 +65,10 @@ export default async function handler(req, res) {
       });
     }
 
-    const host =
-      req.headers['x-forwarded-host'] ||
-      req.headers.host;
-
-    const protocol =
-      req.headers['x-forwarded-proto'] || 'https';
-
     return res.status(200).json({
-      success: true,
-      url: `${protocol}://${host}/?surprise=${slug}`
-    });
+  success: true,
+  url: `https://wishly-birthday-t2v7.vercel.app/?surprise=${slug}`
+});
 
   } catch (error) {
     return res.status(500).json({
