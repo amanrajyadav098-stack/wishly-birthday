@@ -65,4 +65,237 @@ $("copy").onclick = async () => {
     }, 2000);
   }
 };
+  async function loadSurprise() {
+  const params = new URLSearchParams(window.location.search);
+  const slug = params.get("surprise");
+
+  if (!slug) return;
+
+  try {
+    $("status").textContent = "Loading your surprise...";
+
+    const response = await fetch(
+      `/api/get-surprise?slug=${encodeURIComponent(slug)}`
+    );
+
+    const data = await response.json();
+
+    if (!response.ok) {
+      throw new Error(data.error || "Surprise not found");
+    }
+
+    document.querySelector(".grid").innerHTML = `
+      <section class="card" style="grid-column:1/-1;text-align:center">
+        <div style="font-size:70px">🎂</div>
+        <h1>Happy Birthday, ${escapeHtml(data.name)}! ❤️</h1>
+        <p>${escapeHtml(data.message || "")}</p>
+        <button class="primary" id="startSurprise">
+          🕯️ Start Your Surprise
+        </button>
+      </section>
+    `;
+
+    document
+      .getElementById("startSurprise")
+      .onclick = () => startBirthdayExperience(data);
+
+  } catch (error) {
+    $("status").textContent = error.message;
+  }
+}
+
+function escapeHtml(value) {
+  return String(value || "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+}
+
+function startBirthdayExperience(data) {
+  document.querySelector(".grid").innerHTML = `
+    <section class="card" style="grid-column:1/-1;text-align:center">
+      <div style="font-size:70px">🕯️🎂</div>
+      <h1>Are you ready?</h1>
+      <p>Get ready to blow the candles for ${escapeHtml(data.name)}! 💨</p>
+      <button class="primary" id="candleStart">
+        🕯️ I'm Ready
+      </button>
+    </section>
+  `;
+
+  document.getElementById("candleStart").onclick = () => {
+    startCandleExperience(data);
+  };
+}
+
+async function startCandleExperience(data) {
+  document.querySelector(".grid").innerHTML = `
+    <section class="card" style="grid-column:1/-1;text-align:center">
+      <div id="candles" style="font-size:80px">🕯️🕯️🕯️</div>
+      <h1>Blow the candles! 💨</h1>
+      <p>Allow microphone access and blow toward the microphone.</p>
+      <button class="primary" id="micStart">
+        🎤 Start Camera & Microphone
+      </button>
+    </section>
+  `;
+
+  document.getElementById("micStart").onclick = () => detectBlow(data);
+}
+
+async function detectBlow(data) {
+  try {
+    const stream = await navigator.mediaDevices.getUserMedia({
+      audio: true,
+      video: true
+    });
+
+    const audioContext = new AudioContext();
+    const source = audioContext.createMediaStreamSource(stream);
+    const analyser = audioContext.createAnalyser();
+
+    analyser.fftSize = 512;
+    source.connect(analyser);
+
+    const values = new Uint8Array(analyser.fftSize);
+
+    document.querySelector(".grid").innerHTML = `
+      <section class="card" style="grid-column:1/-1;text-align:center">
+        <video id="camera" autoplay playsinline muted
+          style="width:min(500px,100%);border-radius:20px"></video>
+        <div id="candles" style="font-size:80px">🕯️🕯️🕯️</div>
+        <h2>💨 Blow now!</h2>
+      </section>
+    `;
+
+    $("camera").srcObject = stream;
+
+    let blown = false;
+
+    function checkBlow() {
+      if (blown) return;
+
+      analyser.getByteTimeDomainData(values);
+
+      let sum = 0;
+
+      for (const value of values) {
+        const normalized = (value - 128) / 128;
+        sum += normalized * normalized;
+      }
+
+      const volume = Math.sqrt(sum / values.length);
+
+      if (volume > 0.18) {
+        blown = true;
+
+        stream.getTracks().forEach(track => track.stop());
+        audioContext.close();
+
+        $("candles").textContent = "✨🎂✨";
+
+        setTimeout(() => {
+          showBirthdayGreeting(data);
+        }, 1200);
+
+        return;
+      }
+
+      requestAnimationFrame(checkBlow);
+    }
+
+    checkBlow();
+
+  } catch (error) {
+    document.querySelector(".grid").innerHTML = `
+      <section class="card" style="grid-column:1/-1;text-align:center">
+        <h1>Camera/Microphone permission needed 🎤</h1>
+        <p>${escapeHtml(error.message)}</p>
+        <button class="primary" onclick="startCandleExperience(window.currentSurprise)">
+          Try Again
+        </button>
+      </section>
+    `;
+  }
+}
+
+function showBirthdayGreeting(data) {
+  window.currentSurprise = data;
+
+  document.querySelector(".grid").innerHTML = `
+    <section class="card" style="grid-column:1/-1;text-align:center">
+      <div style="font-size:70px">🎉🎂🎉</div>
+      <h1>Happy Birthday, ${escapeHtml(data.name)}! ❤️</h1>
+      <p>${escapeHtml(data.message || "")}</p>
+      <button class="primary" id="memoryStart">
+        ${data.memories?.length ? "💌 Something Special..." : "❤️ Continue"}
+      </button>
+    </section>
+  `;
+
+  document.getElementById("memoryStart").onclick = () => {
+    if (data.memories?.length) {
+      showMemories(data);
+    } else {
+      showFinal(data);
+    }
+  };
+}
+
+function showMemories(data) {
+  let index = 0;
+
+  function showMemory() {
+    const memory = data.memories[index];
+
+    document.querySelector(".grid").innerHTML = `
+      <section class="card" style="grid-column:1/-1;text-align:center">
+        <img src="${memory.image}"
+          style="max-width:100%;max-height:55vh;border-radius:20px;object-fit:contain">
+        <h2>Memory ${index + 1} ❤️</h2>
+        <p>${escapeHtml(memory.caption || "")}</p>
+        <button class="primary" id="nextMemory">
+          ${index < data.memories.length - 1 ? "Next Memory →" : "One More Thing ❤️"}
+        </button>
+      </section>
+    `;
+
+    document.getElementById("nextMemory").onclick = () => {
+      index++;
+
+      if (index < data.memories.length) {
+        showMemory();
+      } else {
+        showFinal(data);
+      }
+    };
+  }
+
+  showMemory();
+}
+
+function showFinal(data) {
+  document.querySelector(".grid").innerHTML = `
+    <section class="card" style="grid-column:1/-1;text-align:center">
+      ${
+        data.finalImage
+          ? `<img src="${data.finalImage}"
+              style="max-width:100%;max-height:55vh;border-radius:20px;object-fit:contain">`
+          : `<div style="font-size:80px">💖</div>`
+      }
+
+      <h1>Once Again, Happy Birthday! ❤️</h1>
+
+      <p>${escapeHtml(data.finalGreeting || "")}</p>
+
+      <h2 style="margin-top:35px">
+        Thank you for being so special. ❤️
+      </h2>
+    </section>
+  `;
+}
+
+loadSurprise();
 </script></body></html>
