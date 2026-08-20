@@ -2,7 +2,9 @@ import { createClient } from '@supabase/supabase-js';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
-    return res.status(405).json({ error: 'Method not allowed' });
+    return res.status(405).json({
+      error: 'Method not allowed'
+    });
   }
 
   try {
@@ -45,7 +47,9 @@ export default async function handler(req, res) {
       message: body.message || '',
       memoryLine: body.memoryLine || '',
       theme: body.theme || 'normal',
-      memories: body.memories || [],
+      memories: Array.isArray(body.memories)
+        ? body.memories
+        : [],
       finalGreeting: body.finalGreeting || '',
       finalImage: body.finalImage || null
     };
@@ -65,13 +69,9 @@ export default async function handler(req, res) {
       });
     }
 
-    const productionUrl =
-      process.env.VERCEL_PROJECT_PRODUCTION_URL ||
-      'wishly-birthday-t2v7-aman-raaj.vercel.app';
-
     return res.status(200).json({
       success: true,
-      url: `https://${productionUrl}/?surprise=${slug}`
+      slug
     });
 
   } catch (error) {
