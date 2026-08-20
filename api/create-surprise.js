@@ -1,4 +1,5 @@
 import { createClient } from '@supabase/supabase-js';
+import crypto from 'crypto';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
@@ -36,9 +37,7 @@ export default async function handler(req, res) {
       serviceKey
     );
 
-    const slug = crypto.randomUUID()
-      .replaceAll('-', '')
-      .slice(0, 12);
+    const slug = crypto.randomBytes(6).toString('hex');
 
     const payload = {
       name: body.name,
@@ -65,18 +64,24 @@ export default async function handler(req, res) {
 
     if (error) {
       return res.status(500).json({
-        error: error.message
+        error: 'Could not save surprise: ' + error.message
       });
     }
 
+    const baseUrl =
+      process.env.PUBLIC_URL ||
+      'https://wishly-birthday-t2v7.vercel.app';
+
     return res.status(200).json({
       success: true,
-      slug
+      url: `${baseUrl}/?surprise=${slug}`
     });
 
   } catch (error) {
+    console.error('CREATE SURPRISE ERROR:', error);
+
     return res.status(500).json({
-      error: error.message
+      error: error.message || 'Failed to create surprise'
     });
   }
 }
