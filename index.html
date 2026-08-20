@@ -1,288 +1,179 @@
 <!doctype html>
-<html lang="en">
+<html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-
 <title>Wishly — Birthday Surprise</title>
 
 <style>
 *{box-sizing:border-box}
-
 body{
-  margin:0;
-  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
-  background:#08050d;
-  color:white;
+margin:0;
+font-family:system-ui;
+background:#08050d;
+color:white
 }
-
 .wrap{
-  max-width:1100px;
-  margin:auto;
-  padding:35px 18px;
+max-width:1100px;
+margin:auto;
+padding:35px 18px
 }
-
 .head{text-align:center}
-
 h1{
-  font-size:clamp(38px,6vw,64px);
-  margin:0;
-  background:linear-gradient(90deg,#ffd4ea,#ff73bd,#b58cff);
-  -webkit-background-clip:text;
-  color:transparent;
+font-size:clamp(38px,6vw,64px);
+margin:0;
+background:linear-gradient(90deg,#ffd4ea,#ff73bd,#b58cff);
+-webkit-background-clip:text;
+color:transparent
 }
-
 p{color:#c7bdce}
-
 .grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:18px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:18px
 }
-
 .card{
-  background:#120c1c;
-  border:1px solid #ffffff18;
-  border-radius:22px;
-  padding:20px;
+background:#120c1c;
+border:1px solid #ffffff18;
+border-radius:22px;
+padding:20px
 }
-
 label{
-  font-size:12px;
-  color:#bcb1c8;
-  display:block;
-  margin:10px 0 5px;
+font-size:12px;
+color:#bcb1c8;
+display:block;
+margin:10px 0 5px
 }
-
 input,textarea,select{
-  width:100%;
-  background:#0d0815;
-  color:#fff;
-  border:1px solid #ffffff20;
-  border-radius:10px;
-  padding:11px;
+width:100%;
+background:#0d0815;
+color:#fff;
+border:1px solid #ffffff20;
+border-radius:10px;
+padding:11px
 }
-
 textarea{min-height:80px}
-
 .row,.memories{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:10px;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:10px
 }
-
 .themes{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:7px;
+display:grid;
+grid-template-columns:repeat(5,1fr);
+gap:7px
 }
-
 .theme{
-  height:50px;
-  border-radius:10px;
-  border:2px solid transparent;
-  cursor:pointer;
+height:50px;
+border-radius:10px;
+border:2px solid transparent;
+cursor:pointer
 }
-
 .active{border-color:white}
-
-.normal{
-  background:linear-gradient(135deg,#34184e,#090615);
-}
-
-.aurora{
-  background:linear-gradient(135deg,#0b506d,#472080,#10172e);
-}
-
-.sunset{
-  background:linear-gradient(135deg,#ff7b72,#8f2c82,#1a102d);
-}
-
-.ocean{
-  background:linear-gradient(135deg,#087f8c,#182b66);
-}
-
-.hearts{
-  background:linear-gradient(135deg,#681344,#17091b);
-}
-
+.normal{background:linear-gradient(135deg,#34184e,#090615)}
+.aurora{background:linear-gradient(135deg,#0b506d,#472080,#10172e)}
+.sunset{background:linear-gradient(135deg,#ff7b72,#8f2c82,#1a102d)}
+.ocean{background:linear-gradient(135deg,#087f8c,#182b66)}
+.hearts{background:linear-gradient(135deg,#681344,#17091b)}
 button{
-  border:0;
-  border-radius:12px;
-  padding:13px;
-  font-weight:800;
-  cursor:pointer;
+border:0;
+border-radius:12px;
+padding:13px;
+font-weight:800;
+cursor:pointer
 }
-
 .primary{
-  width:100%;
-  background:linear-gradient(90deg,#ff58ad,#9d6cff);
-  color:white;
+width:100%;
+background:linear-gradient(90deg,#ff58ad,#9d6cff);
+color:white
 }
-
 .preview{
-  min-height:600px;
-  border-radius:18px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:25px;
-  background:linear-gradient(160deg,#36164e,#090511);
+min-height:600px;
+border-radius:18px;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:25px;
+background:linear-gradient(160deg,#36164e,#090511)
 }
-
-.preview.aurora{
-  background:linear-gradient(160deg,#0c5368,#3c1d68,#090b19);
-}
-
-.preview.sunset{
-  background:linear-gradient(160deg,#ff796d,#78245f,#100718);
-}
-
-.preview.ocean{
-  background:linear-gradient(160deg,#07808a,#1b2c6a,#080d20);
-}
-
-.preview.hearts{
-  background:linear-gradient(160deg,#65133f,#150713);
-}
-
-.gift{
-  font-size:64px;
-}
-
-.hidden{
-  display:none!important;
-}
-
+.preview.aurora{background:linear-gradient(160deg,#0c5368,#3c1d68,#090b19)}
+.preview.sunset{background:linear-gradient(160deg,#ff796d,#78245f,#100718)}
+.preview.ocean{background:linear-gradient(160deg,#07808a,#1b2c6a,#080d20)}
+.preview.hearts{background:linear-gradient(160deg,#65133f,#150713)}
+.gift{font-size:64px}
+.hidden{display:none!important}
 .share{
-  word-break:break-all;
-  background:#ffffff12;
-  padding:10px;
-  margin:10px 0;
-  border-radius:8px;
+word-break:break-all;
+background:#ffffff12;
+padding:10px;
+margin:10px 0;
+border-radius:8px
 }
 
-.surprise-screen{
-  max-width:850px;
-  margin:30px auto;
-  padding:25px;
-  text-align:center;
+/* SURPRISE */
+#surprisePage{
+max-width:850px;
+margin:40px auto;
+padding:20px
 }
-
-.surprise-box{
-  background:#120c1c;
-  border:1px solid #ffffff18;
-  border-radius:25px;
-  padding:30px;
+.surprise-card{
+background:#120c1c;
+border:1px solid #ffffff18;
+border-radius:25px;
+padding:35px;
+text-align:center
 }
-
-.big-title{
-  font-size:clamp(35px,7vw,65px);
-  margin:10px 0;
+.big{
+font-size:80px;
+margin:10px
 }
-
-.next-btn{
-  background:linear-gradient(90deg,#ff58ad,#9d6cff);
-  color:white;
-  min-width:180px;
-  margin-top:20px;
+.surprise-card h1{
+font-size:clamp(35px,7vw,60px)
 }
-
-.candle-area{
-  position:relative;
-  margin:25px auto;
-  width:280px;
-  height:300px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-direction:column;
+.next{
+background:linear-gradient(90deg,#ff58ad,#9d6cff);
+color:white;
+margin-top:20px;
+min-width:190px
 }
-
-.cake{
-  font-size:150px;
+.memory{
+margin:25px auto;
+max-width:650px
 }
-
-.flame{
-  position:absolute;
-  top:55px;
-  font-size:45px;
-  animation:flicker .25s infinite alternate;
+.memory img{
+width:100%;
+max-height:500px;
+object-fit:contain;
+border-radius:20px
 }
-
-@keyframes flicker{
-  from{transform:scale(1)}
-  to{transform:scale(1.12)}
-}
-
-.candle-off .flame{
-  display:none;
-}
-
-.camera-box{
-  margin:20px auto;
-  max-width:650px;
-  background:#050308;
-  border-radius:20px;
-  overflow:hidden;
-  border:1px solid #ffffff22;
-}
-
-.camera-box video{
-  width:100%;
-  display:block;
-  max-height:450px;
-  object-fit:cover;
-}
-
-.status{
-  min-height:24px;
-  color:#ffd4ea;
-}
-
-.memory-card{
-  margin:25px auto;
-  background:#0d0815;
-  border-radius:20px;
-  padding:15px;
-  max-width:650px;
-}
-
-.memory-card img{
-  width:100%;
-  max-height:550px;
-  object-fit:contain;
-  border-radius:15px;
-}
-
-.memory-caption{
-  font-size:17px;
-  color:#eee;
-  margin-top:12px;
-}
-
 .final-image{
-  width:100%;
-  max-width:650px;
-  border-radius:20px;
-  margin-top:20px;
+width:100%;
+max-height:550px;
+object-fit:contain;
+border-radius:20px
 }
-
-.language-switch{
-  max-width:300px;
-  margin:0 auto 25px;
+.camera{
+width:100%;
+max-width:600px;
+border-radius:20px;
+margin:20px auto
 }
-
+.candle{
+font-size:110px;
+margin:15px
+}
 @media(max-width:800px){
-  .grid{grid-template-columns:1fr}
-  .row,.memories{grid-template-columns:1fr}
-  .preview{min-height:420px}
+.grid{grid-template-columns:1fr}
+.row,.memories{grid-template-columns:1fr}
+.preview{min-height:420px}
 }
 </style>
 </head>
 
 <body>
+
+<!-- CREATOR PAGE -->
 
 <div id="creatorPage">
 
@@ -331,21 +222,17 @@ I hope your day is as beautiful as your smile. Keep smiling, keep shining and al
 
 <label>Line before memories</label>
 
-<input
-id="memoryLine"
-value="There is something special I want you to see... 💌"
->
+<input id="memoryLine"
+value="There is something special I want you to see... 💌">
 
 <label>Personalise background / theme</label>
 
 <div class="themes">
-
 <div class="theme normal active" data-t="normal"></div>
 <div class="theme aurora" data-t="aurora"></div>
 <div class="theme sunset" data-t="sunset"></div>
 <div class="theme ocean" data-t="ocean"></div>
 <div class="theme hearts" data-t="hearts"></div>
-
 </div>
 
 <label>📸 Memories — up to 4</label>
@@ -409,15 +296,10 @@ value="There is something special I want you to see... 💌"
 <div id="preview" class="preview">
 
 <div>
-
 <div class="gift">🎁</div>
-
 <h2 id="pn">Someone special</h2>
-
 <p id="pm">Your birthday surprise will appear here.</p>
-
 <p id="pl"></p>
-
 </div>
 
 </div>
@@ -426,33 +308,24 @@ value="There is something special I want you to see... 💌"
 
 </div>
 </div>
-
 </div>
 
 
-<!-- ================= SURPRISE EXPERIENCE ================= -->
+<!-- RECEIVER PAGE -->
 
 <div id="surprisePage" class="hidden">
 
-<div class="surprise-screen">
-
-<div class="surprise-box">
-
-<div class="language-switch">
+<div class="surprise-card">
 
 <select id="receiverLanguage">
 <option value="English">English</option>
-<option value="Hindi">हिंदी</option>
+<option value="Hindi">Hindi</option>
 <option value="Hinglish">Hinglish</option>
-<option value="Bengali">বাংলা</option>
-<option value="Punjabi">ਪੰਜਾਬੀ</option>
+<option value="Bengali">Bengali</option>
+<option value="Punjabi">Punjabi</option>
 </select>
 
-</div>
-
 <div id="surpriseContent"></div>
-
-</div>
 
 </div>
 
@@ -465,25 +338,24 @@ value="There is something special I want you to see... 💌"
 
 const $ = id => document.getElementById(id);
 
-let theme = "normal";
-let surpriseData = null;
-let currentStep = 0;
-let cameraStream = null;
-let blowDetected = false;
+let theme="normal";
+let surprise=null;
+let memoryIndex=0;
+let stream=null;
 
 
-/* ================= CREATOR ================= */
+/* CREATOR PREVIEW */
 
-document.querySelectorAll(".theme").forEach(x => {
+document.querySelectorAll(".theme").forEach(x=>{
 
-x.onclick = () => {
+x.onclick=()=>{
 
 document.querySelectorAll(".theme")
-.forEach(y => y.classList.remove("active"));
+.forEach(y=>y.classList.remove("active"));
 
 x.classList.add("active");
 
-theme = x.dataset.t;
+theme=x.dataset.t;
 
 render();
 
@@ -494,85 +366,78 @@ render();
 
 function render(){
 
-$("pn").textContent =
+$("pn").textContent=
 $("name").value || "Someone special";
 
-$("pm").textContent =
+$("pm").textContent=
 $("message").value;
 
-$("pl").textContent =
+$("pl").textContent=
 $("memoryLine").value;
 
-$("preview").className =
-"preview " + theme;
+$("preview").className=
+"preview "+theme;
 
 }
 
 
-["name","message","memoryLine"].forEach(x => {
-
-$(x).oninput = render;
-
-});
+["name","message","memoryLine"]
+.forEach(x=>$(x).oninput=render);
 
 render();
 
+
+/* IMAGE CONVERSION */
 
 function img(file){
 
 return new Promise((resolve,reject)=>{
 
-if(!file)
-return resolve(null);
+if(!file)return resolve(null);
 
-let reader = new FileReader();
+let r=new FileReader();
 
-reader.onload = () => {
+r.onload=()=>{
 
-let image = new Image();
+let im=new Image();
 
-image.onload = () => {
+im.onload=()=>{
 
-let scale =
-Math.min(1,900/image.width,900/image.height);
+let scale=
+Math.min(1,900/im.width,900/im.height);
 
-let canvas = document.createElement("canvas");
+let c=document.createElement("canvas");
 
-canvas.width = image.width * scale;
-canvas.height = image.height * scale;
+c.width=im.width*scale;
+c.height=im.height*scale;
 
-canvas
-.getContext("2d")
-.drawImage(
-image,
-0,
-0,
-canvas.width,
-canvas.height
-);
+c.getContext("2d")
+.drawImage(im,0,0,c.width,c.height);
 
 resolve(
-canvas.toDataURL("image/jpeg",.72)
+c.toDataURL("image/jpeg",.72)
 );
 
 };
 
-image.src = reader.result;
+im.src=r.result;
 
 };
 
-reader.onerror = reject;
+r.onerror=reject;
 
-reader.readAsDataURL(file);
+r.readAsDataURL(file);
 
 });
 
 }
 
 
+/* API POST */
+
 async function post(url,body){
 
-let response = await fetch(url,{
+let r=await fetch(url,{
 
 method:"POST",
 
@@ -584,15 +449,9 @@ body:JSON.stringify(body)
 
 });
 
-let data;
+let data=await r.json();
 
-try{
-data = await response.json();
-}catch{
-throw Error("Server returned invalid response");
-}
-
-if(!response.ok)
+if(!r.ok)
 throw Error(data.error || "Request failed");
 
 return data;
@@ -600,39 +459,28 @@ return data;
 }
 
 
-/* ================= PAYMENT ================= */
+/* PAYMENT */
 
-$("create").onclick = async () => {
+$("create").onclick=async()=>{
 
 try{
 
-$("status").textContent =
-"Preparing...";
+$("status").textContent="Preparing...";
 
 if(
 !$("name").value ||
 !$("birthday").value
-){
-
-throw Error(
-"Enter name and birthday."
-);
-
-}
+)
+throw Error("Enter name and birthday.");
 
 
-let photos =
-[
-...document.querySelectorAll(".photo")
-];
+let photos=
+[...document.querySelectorAll(".photo")];
 
-let captions =
-[
-...document.querySelectorAll(".cap")
-];
+let caps=
+[...document.querySelectorAll(".cap")];
 
-let memories = [];
-
+let memories=[];
 
 for(
 let i=0;
@@ -640,19 +488,15 @@ i<photos.length;
 i++
 ){
 
-if(
-photos[i].files[0]
-){
+if(photos[i].files[0]){
 
 memories.push({
 
 image:
-await img(
-photos[i].files[0]
-),
+await img(photos[i].files[0]),
 
 caption:
-captions[i].value
+caps[i].value
 
 });
 
@@ -661,13 +505,11 @@ captions[i].value
 }
 
 
-let final =
-await img(
-$("finalImage").files[0]
-);
+let finalImage=
+await img($("finalImage").files[0]);
 
 
-let payload = {
+let payload={
 
 name:$("name").value,
 
@@ -679,31 +521,28 @@ message:$("message").value,
 
 memoryLine:$("memoryLine").value,
 
-theme,
+theme:theme,
 
-memories,
+memories:memories,
 
-finalGreeting:
-$("finalGreeting").value,
+finalGreeting:$("finalGreeting").value,
 
-finalImage:
-final
+finalImage:finalImage
 
 };
 
 
-$("status").textContent =
+$("status").textContent=
 "Opening payment...";
 
 
-let order =
+let order=
 await post(
 "/api/create-order",
 {amount:39}
 );
 
 
-let razorpay =
 new Razorpay({
 
 key:order.key_id,
@@ -714,8 +553,7 @@ currency:"INR",
 
 name:"Wishly",
 
-description:
-"Birthday Surprise",
+description:"Birthday Surprise",
 
 order_id:order.id,
 
@@ -723,21 +561,13 @@ handler:async payment=>{
 
 try{
 
-$("status").textContent =
-"Verifying payment...";
-
-
 await post(
 "/api/verify-payment",
 payment
 );
 
 
-$("status").textContent =
-"Creating your surprise...";
-
-
-let result =
+let result=
 await post(
 "/api/create-surprise",
 {
@@ -754,21 +584,19 @@ payment.razorpay_order_id
 );
 
 
-$("url").textContent =
+$("url").textContent=
 result.url;
 
 $("share")
-.classList
-.remove("hidden");
+.classList.remove("hidden");
 
-$("status").textContent =
+$("status").textContent=
 "Done 🎉";
 
 
-}catch(error){
+}catch(e){
 
-$("status").textContent =
-error.message;
+$("status").textContent=e.message;
 
 }
 
@@ -778,195 +606,145 @@ theme:{
 color:"#ff58ad"
 }
 
-});
+}).open();
 
 
-razorpay.open();
+}catch(e){
 
-
-}catch(error){
-
-$("status").textContent =
-error.message;
+$("status").textContent=e.message;
 
 }
 
 };
 
 
-/* ================= COPY ================= */
+/* COPY */
 
-$("copy").onclick = async () => {
+$("copy").onclick=async()=>{
 
-let text =
-$("url").textContent;
+let text=$("url").textContent;
 
 try{
 
 await navigator.clipboard.writeText(text);
 
-$("copy").textContent =
-"Copied ✓";
-
-setTimeout(()=>{
-$("copy").textContent =
-"Copy link";
-},2000);
+$("copy").textContent="Copied ✓";
 
 }catch{
 
-let area =
-document.createElement("textarea");
+let t=document.createElement("textarea");
 
-area.value=text;
+t.value=text;
 
-document.body.appendChild(area);
+document.body.appendChild(t);
 
-area.select();
+t.select();
 
 document.execCommand("copy");
 
-area.remove();
+t.remove();
 
-$("copy").textContent =
-"Copied ✓";
-
-setTimeout(()=>{
-$("copy").textContent =
-"Copy link";
-},2000);
+$("copy").textContent="Copied ✓";
 
 }
+
+setTimeout(()=>{
+$("copy").textContent="Copy link";
+},2000);
 
 };
 
 
-/* ================= TRANSLATIONS ================= */
+/* LANGUAGE */
 
-const translations = {
+const lang={
 
 English:{
-
-ready:"Are you ready to blow out your birthday candle? 🎂",
-
-camera:"Get ready... the camera is opening! 📸",
-
-blow:"Blow towards the microphone to blow out the candle! 💨",
-
-next:"Next ❤️",
-
+ready:"Are you ready to blow the candles? 🎂",
+start:"Start Your Surprise",
+blow:"Blow towards the microphone! 💨",
 birthday:"Happy Birthday",
-
 memories:"Some beautiful memories for you ❤️",
-
 final:"Once again, Happy Birthday! 💗",
-
-thanks:"Thank you for being so special. ❤️"
-
+thanks:"Thank you for being so special. ❤️",
+next:"Next ❤️"
 },
 
 Hindi:{
-
-ready:"क्या तुम अपनी birthday candle बुझाने के लिए ready हो? 🎂",
-
-camera:"Ready हो जाओ... camera खुल रहा है! 📸",
-
-blow:"Microphone की तरफ जोर से फूंक मारो और candle बुझाओ! 💨",
-
-next:"आगे बढ़ें ❤️",
-
+ready:"क्या तुम candles बुझाने के लिए ready हो? 🎂",
+start:"अपना Surprise शुरू करें",
+blow:"Microphone की तरफ जोर से फूंक मारो! 💨",
 birthday:"जन्मदिन मुबारक हो",
-
 memories:"तुम्हारी कुछ खूबसूरत यादें ❤️",
-
-final:"एक बार फिर, जन्मदिन की बहुत-बहुत शुभकामनाएं! 💗",
-
-thanks:"इतने खास होने के लिए धन्यवाद। ❤️"
-
+final:"एक बार फिर जन्मदिन की बहुत-बहुत शुभकामनाएं! 💗",
+thanks:"इतने खास होने के लिए धन्यवाद। ❤️",
+next:"आगे ❤️"
 },
 
 Hinglish:{
-
-ready:"Are you ready birthday candle bhujane ke liye? 🎂",
-
-camera:"Ready ho jao... camera open ho raha hai! 📸",
-
-blow:"Microphone ki taraf phoonk maaro aur candle bhujayo! 💨",
-
-next:"Next ❤️",
-
+ready:"Are you ready candles bhujane ke liye? 🎂",
+start:"Start Your Surprise",
+blow:"Microphone ki taraf zor se phoonk maaro! 💨",
 birthday:"Happy Birthday",
-
 memories:"Tumhari kuch beautiful memories ❤️",
-
 final:"Once again, Happy Birthday! 💗",
-
-thanks:"Itne special hone ke liye thank you. ❤️"
-
+thanks:"Itne special hone ke liye thank you. ❤️",
+next:"Next ❤️"
 },
 
 Bengali:{
-
-ready:"তুমি কি তোমার birthday candle নেভানোর জন্য ready? 🎂",
-
-camera:"Ready হও... camera খুলছে! 📸",
-
-blow:"Microphone-এর দিকে জোরে ফুঁ দাও এবং candle নিভিয়ে দাও! 💨",
-
-next:"পরেরটি ❤️",
-
+ready:"তুমি কি candle নেভানোর জন্য ready? 🎂",
+start:"তোমার Surprise শুরু করো",
+blow:"Microphone-এর দিকে জোরে ফুঁ দাও! 💨",
 birthday:"শুভ জন্মদিন",
-
 memories:"তোমার কিছু সুন্দর স্মৃতি ❤️",
-
 final:"আবারও শুভ জন্মদিন! 💗",
-
-thanks:"এতটা special হওয়ার জন্য ধন্যবাদ। ❤️"
-
+thanks:"এতটা special হওয়ার জন্য ধন্যবাদ। ❤️",
+next:"পরেরটি ❤️"
 },
 
 Punjabi:{
-
-ready:"ਕੀ ਤੁਸੀਂ ਆਪਣੀ birthday candle ਬੁਝਾਉਣ ਲਈ ready ਹੋ? 🎂",
-
-camera:"Ready ਹੋ ਜਾਓ... camera ਖੁੱਲ ਰਿਹਾ ਹੈ! 📸",
-
-blow:"Microphone ਵੱਲ ਜ਼ੋਰ ਨਾਲ ਫੂਕ ਮਾਰੋ ਅਤੇ candle ਬੁਝਾਓ! 💨",
-
-next:"ਅੱਗੇ ❤️",
-
+ready:"ਕੀ ਤੁਸੀਂ candles ਬੁਝਾਉਣ ਲਈ ready ਹੋ? 🎂",
+start:"ਆਪਣਾ Surprise ਸ਼ੁਰੂ ਕਰੋ",
+blow:"Microphone ਵੱਲ ਜ਼ੋਰ ਨਾਲ ਫੂਕ ਮਾਰੋ! 💨",
 birthday:"ਜਨਮਦਿਨ ਮੁਬਾਰਕ",
-
 memories:"ਤੁਹਾਡੀਆਂ ਕੁਝ ਖੂਬਸੂਰਤ ਯਾਦਾਂ ❤️",
-
 final:"ਇੱਕ ਵਾਰ ਫਿਰ ਜਨਮਦਿਨ ਮੁਬਾਰਕ! 💗",
-
-thanks:"ਇੰਨੇ special ਹੋਣ ਲਈ ਧੰਨਵਾਦ। ❤️"
-
+thanks:"ਇੰਨੇ special ਹੋਣ ਲਈ ਧੰਨਵਾਦ। ❤️",
+next:"ਅੱਗੇ ❤️"
 }
 
 };
 
 
-/* ================= LOAD SAVED SURPRISE ================= */
+function T(){
 
-async function loadSurprise(){
+return lang[
+$("receiverLanguage").value
+] || lang.English;
 
-let params =
+}
+
+
+/* LOAD SHARED SURPRISE */
+
+async function loadShared(){
+
+const params=
 new URLSearchParams(
 window.location.search
 );
 
-let slug =
+const slug=
 params.get("surprise");
 
 if(!slug)
-return false;
+return;
 
 
 try{
 
-let response =
+let r=
 await fetch(
 "/api/get-surprise?slug="
 +
@@ -974,137 +752,91 @@ encodeURIComponent(slug)
 );
 
 
-if(!response.ok)
+let data=
+await r.json();
+
+if(!r.ok)
 throw Error(
-"Surprise not found"
+data.error || "Surprise not found"
 );
 
 
-let data =
-await response.json();
-
-
-/*
-Different possible API response formats
-are handled here.
-*/
-
-surpriseData =
-data.payload ||
-data.surprise?.payload ||
-data;
-
-
-if(!surpriseData.name)
-throw Error(
-"Invalid surprise data"
-);
-
+surprise=data;
 
 $("creatorPage")
-.classList
-.add("hidden");
+.classList.add("hidden");
 
 $("surprisePage")
-.classList
-.remove("hidden");
+.classList.remove("hidden");
 
-
-$("receiverLanguage").value =
-surpriseData.language ||
-"English";
-
+$("receiverLanguage").value=
+data.language || "English";
 
 showStep(0);
 
-return true;
 
-
-}catch(error){
-
-console.error(error);
+}catch(e){
 
 $("creatorPage")
-.classList
-.add("hidden");
+.classList.add("hidden");
 
 $("surprisePage")
-.classList
-.remove("hidden");
+.classList.remove("hidden");
 
-$("surpriseContent").innerHTML = `
+$("surpriseContent").innerHTML=`
 
-<h1>Oops 😔</h1>
+<h1>😔 Oops!</h1>
 
 <p>
-This birthday surprise could not be loaded.
+This surprise could not be loaded.
 </p>
 
 <p>
-Please check that the link is correct.
+${escapeHtml(e.message)}
 </p>
 
 `;
 
-return true;
-
 }
 
 }
 
 
-/* ================= SURPRISE FLOW ================= */
-
-function getLang(){
-
-return translations[
-$("receiverLanguage").value
-] || translations.English;
-
-}
-
+/* SURPRISE STEPS */
 
 function showStep(step){
 
-currentStep = step;
+let t=T();
 
-let t = getLang();
+let name=
+escapeHtml(surprise.name);
 
-let data = surpriseData;
-
-let content =
+let box=
 $("surpriseContent");
 
 
-/* STEP 0 */
+/* INTRO */
 
 if(step===0){
 
-content.innerHTML = `
+box.innerHTML=`
 
-<div class="big-title">
-🎁
-</div>
+<div class="big">🎁</div>
 
-<h1 class="big-title">
-${escapeHtml(data.name)}
+<h1>
+${name}
 </h1>
 
 <h2>
-${escapeHtml(t.birthday)}! ❤️
+${t.birthday}! ❤️
 </h2>
 
 <p>
-${escapeHtml(
-data.message || ""
-)}
+${escapeHtml(surprise.message || "")}
 </p>
 
-<button
-class="next-btn"
-onclick="showStep(1)"
->
-${escapeHtml(t.next)}
+<button class="next" onclick="showStep(1)">
+${t.start}
 </button>
 
 `;
@@ -1114,32 +846,24 @@ return;
 }
 
 
-/* STEP 1 */
+/* READY */
 
 if(step===1){
 
-content.innerHTML = `
+box.innerHTML=`
+
+<div class="big">🕯️🎂🕯️</div>
 
 <h1>
-🎂
+Are you ready? ❤️
 </h1>
 
 <h2>
-${escapeHtml(t.ready)}
+${t.ready}
 </h2>
 
-<p>
-${escapeHtml(
-data.memoryLine ||
-t.camera
-)}
-</p>
-
-<button
-class="next-btn"
-onclick="startCamera()"
->
-📸 Start Camera
+<button class="next" onclick="startCamera()">
+📸 ${t.start}
 </button>
 
 `;
@@ -1149,17 +873,15 @@ return;
 }
 
 
-/* STEP 2 */
+/* CAMERA */
 
 if(step===2){
 
-content.innerHTML = `
+box.innerHTML=`
 
-<h2>
-${escapeHtml(t.camera)}
-</h2>
+<h1>🕯️</h1>
 
-<div class="camera-box">
+<div class="camera">
 
 <video
 id="camera"
@@ -1170,28 +892,20 @@ muted
 
 </div>
 
-<div class="candle-area" id="candleArea">
-
-<div class="flame" id="flame">
-🔥
+<div class="candle">
+🔥 🕯️ 🕯️ 🕯️ 🔥
 </div>
 
-<div class="cake">
-🎂
-</div>
-
-</div>
-
-<p class="status" id="blowStatus">
-${escapeHtml(t.blow)}
+<p>
+${t.blow}
 </p>
 
 <button
-class="next-btn hidden"
-id="afterBlow"
+id="blowNext"
+class="next hidden"
 onclick="showStep(3)"
 >
-${escapeHtml(t.next)}
+${t.next}
 </button>
 
 `;
@@ -1201,38 +915,30 @@ return;
 }
 
 
-/* STEP 3 */
+/* BIRTHDAY */
 
 if(step===3){
 
 stopCamera();
 
-content.innerHTML = `
+box.innerHTML=`
 
-<div class="big-title">
-🎉
-</div>
+<div class="big">🎉🎂🎉</div>
 
 <h1>
-${escapeHtml(t.birthday)}
+${t.birthday}
 </h1>
 
 <h2>
-${escapeHtml(data.name)} ❤️
+${name}! ❤️
 </h2>
 
 <p>
-${escapeHtml(
-data.finalGreeting ||
-t.final
-)}
+${escapeHtml(surprise.message || "")}
 </p>
 
-<button
-class="next-btn"
-onclick="showStep(4)"
->
-${escapeHtml(t.next)}
+<button class="next" onclick="showStep(4)">
+${t.next}
 </button>
 
 `;
@@ -1242,145 +948,143 @@ return;
 }
 
 
-/* STEP 4 */
+/* MEMORIES */
 
 if(step===4){
 
-let memories =
-Array.isArray(data.memories)
-? data.memories
-: [];
+let memories=
+Array.isArray(surprise.memories)
+?surprise.memories
+:[];
 
 
-let html = `
+memoryIndex=0;
+
+if(!memories.length){
+
+showStep(5);
+
+return;
+
+}
+
+showMemory();
+
+return;
+
+}
+
+
+/* FINAL */
+
+if(step===5){
+
+stopCamera();
+
+box.innerHTML=`
+
+${
+surprise.finalImage
+?
+`<img
+class="final-image"
+src="${surprise.finalImage}"
+>`
+:
+`<div class="big">💗</div>`
+}
 
 <h1>
-💖
+${t.final}
 </h1>
-
-<h2>
-${escapeHtml(t.memories)}
-</h2>
 
 <p>
 ${escapeHtml(
-data.memoryLine || ""
+surprise.finalGreeting || ""
 )}
 </p>
-`;
 
-
-if(memories.length===0){
-
-html += `
-
-<p>
-No memories were added.
-</p>
+<h2>
+${t.thanks}
+</h2>
 
 `;
 
-}else{
+}
 
-memories.forEach((memory,index)=>{
+}
 
-if(!memory || !memory.image)
-return;
 
-html += `
+/* MEMORY */
 
-<div class="memory-card">
+function showMemory(){
+
+let t=T();
+
+let memories=
+surprise.memories;
+
+let memory=
+memories[memoryIndex];
+
+
+$("surpriseContent").innerHTML=`
+
+<h1>
+${t.memories}
+</h1>
+
+<div class="memory">
 
 <img
 src="${memory.image}"
-alt="Memory ${index+1}"
 >
 
-${
-memory.caption
-?
-`<div class="memory-caption">
-${escapeHtml(memory.caption)}
-</div>`
-:
-""
-}
+<p>
+${escapeHtml(memory.caption || "")}
+</p>
 
 </div>
 
-`;
-
-});
-
-}
-
-
-html += `
-
 <button
-class="next-btn"
-onclick="showStep(5)"
+class="next"
+onclick="nextMemory()"
 >
-${escapeHtml(t.next)}
+${
+memoryIndex < memories.length-1
+?
+t.next
+:
+"One More Thing ❤️"
+}
 </button>
 
 `;
 
+}
 
-content.innerHTML = html;
+
+function nextMemory(){
+
+memoryIndex++;
+
+if(
+memoryIndex >=
+surprise.memories.length
+){
+
+showStep(5);
 
 return;
 
 }
 
-
-/* STEP 5 */
-
-if(step===5){
-
-content.innerHTML = `
-
-<h1>
-💗
-</h1>
-
-<h2>
-${escapeHtml(t.final)}
-</h2>
-
-<p>
-${escapeHtml(
-data.finalGreeting ||
-t.final
-)}
-</p>
-
-${
-data.finalImage
-?
-`
-<img
-class="final-image"
-src="${data.finalImage}"
-alt="Final memory"
->
-`
-:
-""
-}
-
-<h2>
-${escapeHtml(t.thanks)}
-</h2>
-
-`;
-
-}
+showMemory();
 
 }
 
 
-/* ================= CAMERA + BLOW DETECTION ================= */
+/* CAMERA + MICROPHONE */
 
 async function startCamera(){
 
@@ -1388,7 +1092,7 @@ showStep(2);
 
 try{
 
-cameraStream =
+stream=
 await navigator.mediaDevices.getUserMedia({
 
 video:{
@@ -1400,217 +1104,123 @@ audio:true
 });
 
 
-let video =
-document.getElementById("camera");
-
-video.srcObject =
-cameraStream;
+$("camera").srcObject=
+stream;
 
 
-/*
-Use microphone volume to detect
-a strong blow.
-*/
-
-let AudioContext =
+let AudioCtx=
 window.AudioContext ||
 window.webkitAudioContext;
 
-if(!AudioContext){
 
-document.getElementById(
-"blowStatus"
-).textContent =
-"Camera opened. Tap Next when done.";
+if(!AudioCtx){
+
+$("blowNext")
+.classList.remove("hidden");
 
 return;
 
 }
 
 
-let audioContext =
-new AudioContext();
+let audio=
+new AudioCtx();
 
-let source =
-audioContext
-.createMediaStreamSource(
-cameraStream
-);
+let source=
+audio.createMediaStreamSource(stream);
 
-let analyser =
-audioContext.createAnalyser();
+let analyser=
+audio.createAnalyser();
 
-analyser.fftSize = 512;
+analyser.fftSize=512;
 
 source.connect(analyser);
 
-let dataArray =
+let values=
 new Uint8Array(
 analyser.fftSize
 );
 
 
-let startTime =
-Date.now();
+function detect(){
 
-
-function detectBlow(){
-
-if(blowDetected)
+if(!stream)
 return;
 
 
 analyser.getByteTimeDomainData(
-dataArray
+values
 );
-
 
 let sum=0;
 
-for(
-let i=0;
-i<dataArray.length;
-i++
-){
+for(let v of values){
 
-let value =
-(dataArray[i]-128)/128;
+let x=
+(v-128)/128;
 
-sum += value*value;
+sum+=x*x;
 
 }
 
 
-let rms =
+let volume=
 Math.sqrt(
-sum/dataArray.length
+sum/values.length
 );
 
 
-/*
-Strong microphone burst.
-*/
+if(volume>0.12){
 
-if(
-rms > 0.12 &&
-Date.now()-startTime > 1200
-){
+$("candle").textContent=
+"✨ 🎂 ✨";
 
-blowDetected=true;
-
-blowOut();
+$("blowNext")
+.classList.remove("hidden");
 
 return;
 
 }
 
 
-requestAnimationFrame(
-detectBlow
-);
+requestAnimationFrame(detect);
 
 }
 
 
-detectBlow();
+detect();
 
 
-}catch(error){
+}catch(e){
 
-console.error(error);
-
-document.getElementById(
-"blowStatus"
-).textContent =
-"Camera/microphone permission was not given. You can still continue.";
-
-let btn =
-document.getElementById(
-"afterBlow"
-);
-
-if(btn)
-btn.classList.remove("hidden");
+$("blowNext")
+.classList.remove("hidden");
 
 }
-
-}
-
-
-function blowOut(){
-
-let candle =
-document.getElementById(
-"candleArea"
-);
-
-if(candle)
-candle.classList.add(
-"candle-off"
-);
-
-
-let status =
-document.getElementById(
-"blowStatus"
-);
-
-if(status)
-status.textContent =
-"🎉 Yay! Candle बुझ गई! ❤️";
-
-
-let button =
-document.getElementById(
-"afterBlow"
-);
-
-if(button)
-button.classList.remove(
-"hidden"
-);
-
-
-setTimeout(
-stopCamera,
-1500
-);
 
 }
 
 
 function stopCamera(){
 
-if(cameraStream){
+if(stream){
 
-cameraStream
-.getTracks()
-.forEach(
+stream.getTracks().forEach(
 track=>track.stop()
 );
 
-cameraStream=null;
+stream=null;
 
 }
 
 }
 
 
-/* ================= LANGUAGE CHANGE ================= */
-
-$("receiverLanguage").onchange = () => {
-
-if(surpriseData)
-showStep(currentStep);
-
-};
-
-
-/* ================= ESCAPE HTML ================= */
+/* ESCAPE */
 
 function escapeHtml(value){
 
-return String(value ?? "")
+return String(value || "")
 .replace(/&/g,"&amp;")
 .replace(/</g,"&lt;")
 .replace(/>/g,"&gt;")
@@ -1620,9 +1230,9 @@ return String(value ?? "")
 }
 
 
-/* ================= START ================= */
+/* START */
 
-loadSurprise();
+loadShared();
 
 </script>
 
