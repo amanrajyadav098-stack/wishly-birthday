@@ -1,301 +1,1630 @@
 <!doctype html>
-<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
 <title>Wishly — Birthday Surprise</title>
+
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:system-ui;background:#08050d;color:white} .wrap{max-width:1100px;margin:auto;padding:35px 18px}.head{text-align:center}h1{font-size:clamp(38px,6vw,64px);margin:0;background:linear-gradient(90deg,#ffd4ea,#ff73bd,#b58cff);-webkit-background-clip:text;color:transparent}p{color:#c7bdce}.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.card{background:#120c1c;border:1px solid #ffffff18;border-radius:22px;padding:20px}label{font-size:12px;color:#bcb1c8;display:block;margin:10px 0 5px}input,textarea,select{width:100%;background:#0d0815;color:#fff;border:1px solid #ffffff20;border-radius:10px;padding:11px}textarea{min-height:80px}.row,.memories{display:grid;grid-template-columns:1fr 1fr;gap:10px}.themes{display:grid;grid-template-columns:repeat(5,1fr);gap:7px}.theme{height:50px;border-radius:10px;border:2px solid transparent;cursor:pointer}.active{border-color:white}.normal{background:linear-gradient(135deg,#34184e,#090615)}.aurora{background:linear-gradient(135deg,#0b506d,#472080,#10172e)}.sunset{background:linear-gradient(135deg,#ff7b72,#8f2c82,#1a102d)}.ocean{background:linear-gradient(135deg,#087f8c,#182b66)}.hearts{background:linear-gradient(135deg,#681344,#17091b)}button{border:0;border-radius:12px;padding:13px;font-weight:800;cursor:pointer}.primary{width:100%;background:linear-gradient(90deg,#ff58ad,#9d6cff);color:white}.preview{min-height:600px;border-radius:18px;display:flex;align-items:center;justify-content:center;text-align:center;padding:25px;background:linear-gradient(160deg,#36164e,#090511)}.preview.aurora{background:linear-gradient(160deg,#0c5368,#3c1d68,#090b19)}.preview.sunset{background:linear-gradient(160deg,#ff796d,#78245f,#100718)}.preview.ocean{background:linear-gradient(160deg,#07808a,#1b2c6a,#080d20)}.preview.hearts{background:linear-gradient(160deg,#65133f,#150713)}.gift{font-size:64px}.hidden{display:none}.share{word-break:break-all;background:#ffffff12;padding:10px;margin:10px 0;border-radius:8px}@media(max-width:800px){.grid{grid-template-columns:1fr}.row,.memories{grid-template-columns:1fr}.preview{min-height:420px}}
-</style></head><body><div class="wrap">
-<div class="head"><h1>Make their birthday magical.</h1><p>Create it once. Share one link. They experience the whole surprise.</p></div>
-<div class="grid"><section class="card"><h2>🎨 Create Surprise</h2>
-<label>Language</label><select id="language"><option>English</option><option>Hindi</option></select>
-<div class="row"><div><label>Name</label><input id="name" placeholder="Their name"></div><div><label>Birthday</label><input id="birthday" type="date"></div></div>
-<label>Birthday greeting</label><textarea id="message">Happy Birthday, my special person ❤️
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:#08050d;
+  color:white;
+}
+
+.wrap{
+  max-width:1100px;
+  margin:auto;
+  padding:35px 18px;
+}
+
+.head{text-align:center}
+
+h1{
+  font-size:clamp(38px,6vw,64px);
+  margin:0;
+  background:linear-gradient(90deg,#ffd4ea,#ff73bd,#b58cff);
+  -webkit-background-clip:text;
+  color:transparent;
+}
+
+p{color:#c7bdce}
+
+.grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+}
+
+.card{
+  background:#120c1c;
+  border:1px solid #ffffff18;
+  border-radius:22px;
+  padding:20px;
+}
+
+label{
+  font-size:12px;
+  color:#bcb1c8;
+  display:block;
+  margin:10px 0 5px;
+}
+
+input,textarea,select{
+  width:100%;
+  background:#0d0815;
+  color:#fff;
+  border:1px solid #ffffff20;
+  border-radius:10px;
+  padding:11px;
+}
+
+textarea{min-height:80px}
+
+.row,.memories{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.themes{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:7px;
+}
+
+.theme{
+  height:50px;
+  border-radius:10px;
+  border:2px solid transparent;
+  cursor:pointer;
+}
+
+.active{border-color:white}
+
+.normal{
+  background:linear-gradient(135deg,#34184e,#090615);
+}
+
+.aurora{
+  background:linear-gradient(135deg,#0b506d,#472080,#10172e);
+}
+
+.sunset{
+  background:linear-gradient(135deg,#ff7b72,#8f2c82,#1a102d);
+}
+
+.ocean{
+  background:linear-gradient(135deg,#087f8c,#182b66);
+}
+
+.hearts{
+  background:linear-gradient(135deg,#681344,#17091b);
+}
+
+button{
+  border:0;
+  border-radius:12px;
+  padding:13px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.primary{
+  width:100%;
+  background:linear-gradient(90deg,#ff58ad,#9d6cff);
+  color:white;
+}
+
+.preview{
+  min-height:600px;
+  border-radius:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:25px;
+  background:linear-gradient(160deg,#36164e,#090511);
+}
+
+.preview.aurora{
+  background:linear-gradient(160deg,#0c5368,#3c1d68,#090b19);
+}
+
+.preview.sunset{
+  background:linear-gradient(160deg,#ff796d,#78245f,#100718);
+}
+
+.preview.ocean{
+  background:linear-gradient(160deg,#07808a,#1b2c6a,#080d20);
+}
+
+.preview.hearts{
+  background:linear-gradient(160deg,#65133f,#150713);
+}
+
+.gift{
+  font-size:64px;
+}
+
+.hidden{
+  display:none!important;
+}
+
+.share{
+  word-break:break-all;
+  background:#ffffff12;
+  padding:10px;
+  margin:10px 0;
+  border-radius:8px;
+}
+
+.surprise-screen{
+  max-width:850px;
+  margin:30px auto;
+  padding:25px;
+  text-align:center;
+}
+
+.surprise-box{
+  background:#120c1c;
+  border:1px solid #ffffff18;
+  border-radius:25px;
+  padding:30px;
+}
+
+.big-title{
+  font-size:clamp(35px,7vw,65px);
+  margin:10px 0;
+}
+
+.next-btn{
+  background:linear-gradient(90deg,#ff58ad,#9d6cff);
+  color:white;
+  min-width:180px;
+  margin-top:20px;
+}
+
+.candle-area{
+  position:relative;
+  margin:25px auto;
+  width:280px;
+  height:300px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+}
+
+.cake{
+  font-size:150px;
+}
+
+.flame{
+  position:absolute;
+  top:55px;
+  font-size:45px;
+  animation:flicker .25s infinite alternate;
+}
+
+@keyframes flicker{
+  from{transform:scale(1)}
+  to{transform:scale(1.12)}
+}
+
+.candle-off .flame{
+  display:none;
+}
+
+.camera-box{
+  margin:20px auto;
+  max-width:650px;
+  background:#050308;
+  border-radius:20px;
+  overflow:hidden;
+  border:1px solid #ffffff22;
+}
+
+.camera-box video{
+  width:100%;
+  display:block;
+  max-height:450px;
+  object-fit:cover;
+}
+
+.status{
+  min-height:24px;
+  color:#ffd4ea;
+}
+
+.memory-card{
+  margin:25px auto;
+  background:#0d0815;
+  border-radius:20px;
+  padding:15px;
+  max-width:650px;
+}
+
+.memory-card img{
+  width:100%;
+  max-height:550px;
+  object-fit:contain;
+  border-radius:15px;
+}
+
+.memory-caption{
+  font-size:17px;
+  color:#eee;
+  margin-top:12px;
+}
+
+.final-image{
+  width:100%;
+  max-width:650px;
+  border-radius:20px;
+  margin-top:20px;
+}
+
+.language-switch{
+  max-width:300px;
+  margin:0 auto 25px;
+}
+
+@media(max-width:800px){
+  .grid{grid-template-columns:1fr}
+  .row,.memories{grid-template-columns:1fr}
+  .preview{min-height:420px}
+}
+</style>
+</head>
+
+<body>
+
+<div id="creatorPage">
+
+<div class="wrap">
+
+<div class="head">
+<h1>Make their birthday magical.</h1>
+<p>Create it once. Share one link. They experience the whole surprise.</p>
+</div>
+
+<div class="grid">
+
+<section class="card">
+
+<h2>🎨 Create Surprise</h2>
+
+<label>Language</label>
+
+<select id="language">
+<option>English</option>
+<option>Hindi</option>
+<option>Hinglish</option>
+<option>Bengali</option>
+<option>Punjabi</option>
+</select>
+
+<div class="row">
+
+<div>
+<label>Name</label>
+<input id="name" placeholder="Their name">
+</div>
+
+<div>
+<label>Birthday</label>
+<input id="birthday" type="date">
+</div>
+
+</div>
+
+<label>Birthday greeting</label>
+
+<textarea id="message">Happy Birthday, my special person ❤️
 
 I hope your day is as beautiful as your smile. Keep smiling, keep shining and always remember that you are truly special to me.</textarea>
-<label>Line before memories</label><input id="memoryLine" value="There is something special I want you to see... 💌">
-<label>Personalise background / theme</label><div class="themes"><div class="theme normal active" data-t="normal"></div><div class="theme aurora" data-t="aurora"></div><div class="theme sunset" data-t="sunset"></div><div class="theme ocean" data-t="ocean"></div><div class="theme hearts" data-t="hearts"></div></div>
-<label>📸 Memories — up to 4</label><div class="memories">
-<div><input type="file" accept="image/*" class="photo"><textarea class="cap" placeholder="Caption 1"></textarea></div>
-<div><input type="file" accept="image/*" class="photo"><textarea class="cap" placeholder="Caption 2"></textarea></div>
-<div><input type="file" accept="image/*" class="photo"><textarea class="cap" placeholder="Caption 3"></textarea></div>
-<div><input type="file" accept="image/*" class="photo"><textarea class="cap" placeholder="Caption 4"></textarea></div></div>
-<label>Final greeting</label><textarea id="finalGreeting">Once again, Happy Birthday! 💗 May your life always be filled with happiness, beautiful memories and countless reasons to smile.</textarea>
-<label>Final image (optional)</label><input id="finalImage" type="file" accept="image/*">
-<br><br><button class="primary" id="create">✨ CREATE & GET SHARE LINK — ₹39</button><p id="status"></p><div id="share" class="hidden"><b>🎉 Surprise ready!</b><div class="share" id="url"></div><button id="copy">Copy link</button></div>
-</section><section class="card"><h2>👀 Experience Preview</h2><div id="preview" class="preview"><div><div class="gift">🎁</div><h2 id="pn">Someone special</h2><p id="pm">Your birthday surprise will appear here.</p><p id="pl"></p></div></div></section></div></div>
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script><script>
-const $=x=>document.getElementById(x);let theme="normal";
-document.querySelectorAll(".theme").forEach(x=>x.onclick=()=>{document.querySelectorAll(".theme").forEach(y=>y.classList.remove("active"));x.classList.add("active");theme=x.dataset.t;render()});
-function render(){$("pn").textContent=$("name").value||"Someone special";$("pm").textContent=$("message").value;$("pl").textContent=$("memoryLine").value;$("preview").className="preview "+theme}
-["name","message","memoryLine"].forEach(x=>$(x).oninput=render);render();
-function img(file){return new Promise((ok,no)=>{if(!file)return ok(null);let r=new FileReader();r.onload=()=>{let im=new Image();im.onload=()=>{let s=Math.min(1,900/im.width,900/im.height),c=document.createElement("canvas");c.width=im.width*s;c.height=im.height*s;c.getContext("2d").drawImage(im,0,0,c.width,c.height);ok(c.toDataURL("image/jpeg",.72))};im.src=r.result};r.onerror=no;r.readAsDataURL(file)})}
-async function post(u,b){let r=await fetch(u,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(b)}),d=await r.json();if(!r.ok)throw Error(d.error||"Request failed");return d}
-$("create").onclick=async()=>{try{$("status").textContent="Preparing...";if(!$("name").value||!$("birthday").value)throw Error("Enter name and birthday.");let ps=[...document.querySelectorAll(".photo")],cs=[...document.querySelectorAll(".cap")],mem=[];for(let i=0;i<ps.length;i++)if(ps[i].files[0])mem.push({image:await img(ps[i].files[0]),caption:cs[i].value});let final=await img($("finalImage").files[0]);let payload={name:$("name").value,birthday:$("birthday").value,language:$("language").value,message:$("message").value,memoryLine:$("memoryLine").value,theme,memories:mem,finalGreeting:$("finalGreeting").value,finalImage:final};$("status").textContent="Opening payment...";let o=await post("/api/create-order",{amount:39});new Razorpay({key:o.key_id,amount:o.amount,currency:"INR",name:"Wishly",description:"Birthday Surprise",order_id:o.id,handler:async r=>{try{await post("/api/verify-payment",r);let s=await post("/api/create-surprise",{...payload,paymentId:r.razorpay_payment_id,orderId:r.razorpay_order_id});$("url").textContent=s.url;$("share").classList.remove("hidden");$("status").textContent="Done 🎉"}catch(e){$("status").textContent=e.message}},theme:{color:"#ff58ad"}}).open()}catch(e){$("status").textContent=e.message}};
-$("copy").onclick = async () => {
-  const text = $("url").textContent;
 
-  try {
-    await navigator.clipboard.writeText(text);
-    $("copy").textContent = "Copied ✓";
+<label>Line before memories</label>
 
-    setTimeout(() => {
-      $("copy").textContent = "Copy link";
-    }, 2000);
+<input
+id="memoryLine"
+value="There is something special I want you to see... 💌"
+>
 
-  } catch (e) {
-    const textarea = document.createElement("textarea");
-    textarea.value = text;
-    textarea.style.position = "fixed";
-    textarea.style.opacity = "0";
+<label>Personalise background / theme</label>
 
-    document.body.appendChild(textarea);
-    textarea.focus();
-    textarea.select();
+<div class="themes">
 
-    try {
-      document.execCommand("copy");
-      $("copy").textContent = "Copied ✓";
-    } catch (err) {
-      $("status").textContent = "Copy failed. Please copy the link manually.";
-    }
+<div class="theme normal active" data-t="normal"></div>
+<div class="theme aurora" data-t="aurora"></div>
+<div class="theme sunset" data-t="sunset"></div>
+<div class="theme ocean" data-t="ocean"></div>
+<div class="theme hearts" data-t="hearts"></div>
 
-    document.body.removeChild(textarea);
+</div>
 
-    setTimeout(() => {
-      $("copy").textContent = "Copy link";
-    }, 2000);
-  }
+<label>📸 Memories — up to 4</label>
+
+<div class="memories">
+
+<div>
+<input type="file" accept="image/*" class="photo">
+<textarea class="cap" placeholder="Caption 1"></textarea>
+</div>
+
+<div>
+<input type="file" accept="image/*" class="photo">
+<textarea class="cap" placeholder="Caption 2"></textarea>
+</div>
+
+<div>
+<input type="file" accept="image/*" class="photo">
+<textarea class="cap" placeholder="Caption 3"></textarea>
+</div>
+
+<div>
+<input type="file" accept="image/*" class="photo">
+<textarea class="cap" placeholder="Caption 4"></textarea>
+</div>
+
+</div>
+
+<label>Final greeting</label>
+
+<textarea id="finalGreeting">Once again, Happy Birthday! 💗 May your life always be filled with happiness, beautiful memories and countless reasons to smile.</textarea>
+
+<label>Final image (optional)</label>
+
+<input id="finalImage" type="file" accept="image/*">
+
+<br><br>
+
+<button class="primary" id="create">
+✨ CREATE & GET SHARE LINK — ₹39
+</button>
+
+<p id="status"></p>
+
+<div id="share" class="hidden">
+
+<b>🎉 Surprise ready!</b>
+
+<div class="share" id="url"></div>
+
+<button id="copy">Copy link</button>
+
+</div>
+
+</section>
+
+<section class="card">
+
+<h2>👀 Experience Preview</h2>
+
+<div id="preview" class="preview">
+
+<div>
+
+<div class="gift">🎁</div>
+
+<h2 id="pn">Someone special</h2>
+
+<p id="pm">Your birthday surprise will appear here.</p>
+
+<p id="pl"></p>
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+</div>
+
+</div>
+
+
+<!-- ================= SURPRISE EXPERIENCE ================= -->
+
+<div id="surprisePage" class="hidden">
+
+<div class="surprise-screen">
+
+<div class="surprise-box">
+
+<div class="language-switch">
+
+<select id="receiverLanguage">
+<option value="English">English</option>
+<option value="Hindi">हिंदी</option>
+<option value="Hinglish">Hinglish</option>
+<option value="Bengali">বাংলা</option>
+<option value="Punjabi">ਪੰਜਾਬੀ</option>
+</select>
+
+</div>
+
+<div id="surpriseContent"></div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
+<script>
+
+const $ = id => document.getElementById(id);
+
+let theme = "normal";
+let surpriseData = null;
+let currentStep = 0;
+let cameraStream = null;
+let blowDetected = false;
+
+
+/* ================= CREATOR ================= */
+
+document.querySelectorAll(".theme").forEach(x => {
+
+x.onclick = () => {
+
+document.querySelectorAll(".theme")
+.forEach(y => y.classList.remove("active"));
+
+x.classList.add("active");
+
+theme = x.dataset.t;
+
+render();
+
 };
-  async function loadSurprise() {
-  const params = new URLSearchParams(window.location.search);
-  const slug = params.get("surprise");
 
-  if (!slug) return;
+});
 
-  try {
-    $("status").textContent = "Loading your surprise...";
 
-    const response = await fetch(
-      `/api/get-surprise?slug=${encodeURIComponent(slug)}`
-    );
+function render(){
 
-    const data = await response.json();
+$("pn").textContent =
+$("name").value || "Someone special";
 
-    if (!response.ok) {
-      throw new Error(data.error || "Surprise not found");
-    }
+$("pm").textContent =
+$("message").value;
 
-    document.querySelector(".grid").innerHTML = `
-      <section class="card" style="grid-column:1/-1;text-align:center">
-        <div style="font-size:70px">🎂</div>
-        <h1>Happy Birthday, ${escapeHtml(data.name)}! ❤️</h1>
-        <p>${escapeHtml(data.message || "")}</p>
-        <button class="primary" id="startSurprise">
-          🕯️ Start Your Surprise
-        </button>
-      </section>
-    `;
+$("pl").textContent =
+$("memoryLine").value;
 
-    document
-      .getElementById("startSurprise")
-      .onclick = () => startBirthdayExperience(data);
+$("preview").className =
+"preview " + theme;
 
-  } catch (error) {
-    $("status").textContent = error.message;
-  }
 }
 
-function escapeHtml(value) {
-  return String(value || "")
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;");
+
+["name","message","memoryLine"].forEach(x => {
+
+$(x).oninput = render;
+
+});
+
+render();
+
+
+function img(file){
+
+return new Promise((resolve,reject)=>{
+
+if(!file)
+return resolve(null);
+
+let reader = new FileReader();
+
+reader.onload = () => {
+
+let image = new Image();
+
+image.onload = () => {
+
+let scale =
+Math.min(1,900/image.width,900/image.height);
+
+let canvas = document.createElement("canvas");
+
+canvas.width = image.width * scale;
+canvas.height = image.height * scale;
+
+canvas
+.getContext("2d")
+.drawImage(
+image,
+0,
+0,
+canvas.width,
+canvas.height
+);
+
+resolve(
+canvas.toDataURL("image/jpeg",.72)
+);
+
+};
+
+image.src = reader.result;
+
+};
+
+reader.onerror = reject;
+
+reader.readAsDataURL(file);
+
+});
+
 }
 
-function startBirthdayExperience(data) {
-  document.querySelector(".grid").innerHTML = `
-    <section class="card" style="grid-column:1/-1;text-align:center">
-      <div style="font-size:70px">🕯️🎂</div>
-      <h1>Are you ready?</h1>
-      <p>Get ready to blow the candles for ${escapeHtml(data.name)}! 💨</p>
-      <button class="primary" id="candleStart">
-        🕯️ I'm Ready
-      </button>
-    </section>
-  `;
 
-  document.getElementById("candleStart").onclick = () => {
-    startCandleExperience(data);
-  };
+async function post(url,body){
+
+let response = await fetch(url,{
+
+method:"POST",
+
+headers:{
+"Content-Type":"application/json"
+},
+
+body:JSON.stringify(body)
+
+});
+
+let data;
+
+try{
+data = await response.json();
+}catch{
+throw Error("Server returned invalid response");
 }
 
-async function startCandleExperience(data) {
-  document.querySelector(".grid").innerHTML = `
-    <section class="card" style="grid-column:1/-1;text-align:center">
-      <div id="candles" style="font-size:80px">🕯️🕯️🕯️</div>
-      <h1>Blow the candles! 💨</h1>
-      <p>Allow microphone access and blow toward the microphone.</p>
-      <button class="primary" id="micStart">
-        🎤 Start Camera & Microphone
-      </button>
-    </section>
-  `;
+if(!response.ok)
+throw Error(data.error || "Request failed");
 
-  document.getElementById("micStart").onclick = () => detectBlow(data);
+return data;
+
 }
 
-async function detectBlow(data) {
-  try {
-    const stream = await navigator.mediaDevices.getUserMedia({
-      audio: true,
-      video: true
-    });
 
-    const audioContext = new AudioContext();
-    const source = audioContext.createMediaStreamSource(stream);
-    const analyser = audioContext.createAnalyser();
+/* ================= PAYMENT ================= */
 
-    analyser.fftSize = 512;
-    source.connect(analyser);
+$("create").onclick = async () => {
 
-    const values = new Uint8Array(analyser.fftSize);
+try{
 
-    document.querySelector(".grid").innerHTML = `
-      <section class="card" style="grid-column:1/-1;text-align:center">
-        <video id="camera" autoplay playsinline muted
-          style="width:min(500px,100%);border-radius:20px"></video>
-        <div id="candles" style="font-size:80px">🕯️🕯️🕯️</div>
-        <h2>💨 Blow now!</h2>
-      </section>
-    `;
+$("status").textContent =
+"Preparing...";
 
-    $("camera").srcObject = stream;
+if(
+!$("name").value ||
+!$("birthday").value
+){
 
-    let blown = false;
+throw Error(
+"Enter name and birthday."
+);
 
-    function checkBlow() {
-      if (blown) return;
-
-      analyser.getByteTimeDomainData(values);
-
-      let sum = 0;
-
-      for (const value of values) {
-        const normalized = (value - 128) / 128;
-        sum += normalized * normalized;
-      }
-
-      const volume = Math.sqrt(sum / values.length);
-
-      if (volume > 0.18) {
-        blown = true;
-
-        stream.getTracks().forEach(track => track.stop());
-        audioContext.close();
-
-        $("candles").textContent = "✨🎂✨";
-
-        setTimeout(() => {
-          showBirthdayGreeting(data);
-        }, 1200);
-
-        return;
-      }
-
-      requestAnimationFrame(checkBlow);
-    }
-
-    checkBlow();
-
-  } catch (error) {
-    document.querySelector(".grid").innerHTML = `
-      <section class="card" style="grid-column:1/-1;text-align:center">
-        <h1>Camera/Microphone permission needed 🎤</h1>
-        <p>${escapeHtml(error.message)}</p>
-        <button class="primary" onclick="startCandleExperience(window.currentSurprise)">
-          Try Again
-        </button>
-      </section>
-    `;
-  }
 }
 
-function showBirthdayGreeting(data) {
-  window.currentSurprise = data;
 
-  document.querySelector(".grid").innerHTML = `
-    <section class="card" style="grid-column:1/-1;text-align:center">
-      <div style="font-size:70px">🎉🎂🎉</div>
-      <h1>Happy Birthday, ${escapeHtml(data.name)}! ❤️</h1>
-      <p>${escapeHtml(data.message || "")}</p>
-      <button class="primary" id="memoryStart">
-        ${data.memories?.length ? "💌 Something Special..." : "❤️ Continue"}
-      </button>
-    </section>
-  `;
+let photos =
+[
+...document.querySelectorAll(".photo")
+];
 
-  document.getElementById("memoryStart").onclick = () => {
-    if (data.memories?.length) {
-      showMemories(data);
-    } else {
-      showFinal(data);
-    }
-  };
+let captions =
+[
+...document.querySelectorAll(".cap")
+];
+
+let memories = [];
+
+
+for(
+let i=0;
+i<photos.length;
+i++
+){
+
+if(
+photos[i].files[0]
+){
+
+memories.push({
+
+image:
+await img(
+photos[i].files[0]
+),
+
+caption:
+captions[i].value
+
+});
+
 }
 
-function showMemories(data) {
-  let index = 0;
-
-  function showMemory() {
-    const memory = data.memories[index];
-
-    document.querySelector(".grid").innerHTML = `
-      <section class="card" style="grid-column:1/-1;text-align:center">
-        <img src="${memory.image}"
-          style="max-width:100%;max-height:55vh;border-radius:20px;object-fit:contain">
-        <h2>Memory ${index + 1} ❤️</h2>
-        <p>${escapeHtml(memory.caption || "")}</p>
-        <button class="primary" id="nextMemory">
-          ${index < data.memories.length - 1 ? "Next Memory →" : "One More Thing ❤️"}
-        </button>
-      </section>
-    `;
-
-    document.getElementById("nextMemory").onclick = () => {
-      index++;
-
-      if (index < data.memories.length) {
-        showMemory();
-      } else {
-        showFinal(data);
-      }
-    };
-  }
-
-  showMemory();
 }
 
-function showFinal(data) {
-  document.querySelector(".grid").innerHTML = `
-    <section class="card" style="grid-column:1/-1;text-align:center">
-      ${
-        data.finalImage
-          ? `<img src="${data.finalImage}"
-              style="max-width:100%;max-height:55vh;border-radius:20px;object-fit:contain">`
-          : `<div style="font-size:80px">💖</div>`
-      }
 
-      <h1>Once Again, Happy Birthday! ❤️</h1>
+let final =
+await img(
+$("finalImage").files[0]
+);
 
-      <p>${escapeHtml(data.finalGreeting || "")}</p>
 
-      <h2 style="margin-top:35px">
-        Thank you for being so special. ❤️
-      </h2>
-    </section>
-  `;
+let payload = {
+
+name:$("name").value,
+
+birthday:$("birthday").value,
+
+language:$("language").value,
+
+message:$("message").value,
+
+memoryLine:$("memoryLine").value,
+
+theme,
+
+memories,
+
+finalGreeting:
+$("finalGreeting").value,
+
+finalImage:
+final
+
+};
+
+
+$("status").textContent =
+"Opening payment...";
+
+
+let order =
+await post(
+"/api/create-order",
+{amount:39}
+);
+
+
+let razorpay =
+new Razorpay({
+
+key:order.key_id,
+
+amount:order.amount,
+
+currency:"INR",
+
+name:"Wishly",
+
+description:
+"Birthday Surprise",
+
+order_id:order.id,
+
+handler:async payment=>{
+
+try{
+
+$("status").textContent =
+"Verifying payment...";
+
+
+await post(
+"/api/verify-payment",
+payment
+);
+
+
+$("status").textContent =
+"Creating your surprise...";
+
+
+let result =
+await post(
+"/api/create-surprise",
+{
+
+...payload,
+
+paymentId:
+payment.razorpay_payment_id,
+
+orderId:
+payment.razorpay_order_id
+
 }
+);
+
+
+$("url").textContent =
+result.url;
+
+$("share")
+.classList
+.remove("hidden");
+
+$("status").textContent =
+"Done 🎉";
+
+
+}catch(error){
+
+$("status").textContent =
+error.message;
+
+}
+
+},
+
+theme:{
+color:"#ff58ad"
+}
+
+});
+
+
+razorpay.open();
+
+
+}catch(error){
+
+$("status").textContent =
+error.message;
+
+}
+
+};
+
+
+/* ================= COPY ================= */
+
+$("copy").onclick = async () => {
+
+let text =
+$("url").textContent;
+
+try{
+
+await navigator.clipboard.writeText(text);
+
+$("copy").textContent =
+"Copied ✓";
+
+setTimeout(()=>{
+$("copy").textContent =
+"Copy link";
+},2000);
+
+}catch{
+
+let area =
+document.createElement("textarea");
+
+area.value=text;
+
+document.body.appendChild(area);
+
+area.select();
+
+document.execCommand("copy");
+
+area.remove();
+
+$("copy").textContent =
+"Copied ✓";
+
+setTimeout(()=>{
+$("copy").textContent =
+"Copy link";
+},2000);
+
+}
+
+};
+
+
+/* ================= TRANSLATIONS ================= */
+
+const translations = {
+
+English:{
+
+ready:"Are you ready to blow out your birthday candle? 🎂",
+
+camera:"Get ready... the camera is opening! 📸",
+
+blow:"Blow towards the microphone to blow out the candle! 💨",
+
+next:"Next ❤️",
+
+birthday:"Happy Birthday",
+
+memories:"Some beautiful memories for you ❤️",
+
+final:"Once again, Happy Birthday! 💗",
+
+thanks:"Thank you for being so special. ❤️"
+
+},
+
+Hindi:{
+
+ready:"क्या तुम अपनी birthday candle बुझाने के लिए ready हो? 🎂",
+
+camera:"Ready हो जाओ... camera खुल रहा है! 📸",
+
+blow:"Microphone की तरफ जोर से फूंक मारो और candle बुझाओ! 💨",
+
+next:"आगे बढ़ें ❤️",
+
+birthday:"जन्मदिन मुबारक हो",
+
+memories:"तुम्हारी कुछ खूबसूरत यादें ❤️",
+
+final:"एक बार फिर, जन्मदिन की बहुत-बहुत शुभकामनाएं! 💗",
+
+thanks:"इतने खास होने के लिए धन्यवाद। ❤️"
+
+},
+
+Hinglish:{
+
+ready:"Are you ready birthday candle bhujane ke liye? 🎂",
+
+camera:"Ready ho jao... camera open ho raha hai! 📸",
+
+blow:"Microphone ki taraf phoonk maaro aur candle bhujayo! 💨",
+
+next:"Next ❤️",
+
+birthday:"Happy Birthday",
+
+memories:"Tumhari kuch beautiful memories ❤️",
+
+final:"Once again, Happy Birthday! 💗",
+
+thanks:"Itne special hone ke liye thank you. ❤️"
+
+},
+
+Bengali:{
+
+ready:"তুমি কি তোমার birthday candle নেভানোর জন্য ready? 🎂",
+
+camera:"Ready হও... camera খুলছে! 📸",
+
+blow:"Microphone-এর দিকে জোরে ফুঁ দাও এবং candle নিভিয়ে দাও! 💨",
+
+next:"পরেরটি ❤️",
+
+birthday:"শুভ জন্মদিন",
+
+memories:"তোমার কিছু সুন্দর স্মৃতি ❤️",
+
+final:"আবারও শুভ জন্মদিন! 💗",
+
+thanks:"এতটা special হওয়ার জন্য ধন্যবাদ। ❤️"
+
+},
+
+Punjabi:{
+
+ready:"ਕੀ ਤੁਸੀਂ ਆਪਣੀ birthday candle ਬੁਝਾਉਣ ਲਈ ready ਹੋ? 🎂",
+
+camera:"Ready ਹੋ ਜਾਓ... camera ਖੁੱਲ ਰਿਹਾ ਹੈ! 📸",
+
+blow:"Microphone ਵੱਲ ਜ਼ੋਰ ਨਾਲ ਫੂਕ ਮਾਰੋ ਅਤੇ candle ਬੁਝਾਓ! 💨",
+
+next:"ਅੱਗੇ ❤️",
+
+birthday:"ਜਨਮਦਿਨ ਮੁਬਾਰਕ",
+
+memories:"ਤੁਹਾਡੀਆਂ ਕੁਝ ਖੂਬਸੂਰਤ ਯਾਦਾਂ ❤️",
+
+final:"ਇੱਕ ਵਾਰ ਫਿਰ ਜਨਮਦਿਨ ਮੁਬਾਰਕ! 💗",
+
+thanks:"ਇੰਨੇ special ਹੋਣ ਲਈ ਧੰਨਵਾਦ। ❤️"
+
+}
+
+};
+
+
+/* ================= LOAD SAVED SURPRISE ================= */
+
+async function loadSurprise(){
+
+let params =
+new URLSearchParams(
+window.location.search
+);
+
+let slug =
+params.get("surprise");
+
+if(!slug)
+return false;
+
+
+try{
+
+let response =
+await fetch(
+"/api/get-surprise?slug="
++
+encodeURIComponent(slug)
+);
+
+
+if(!response.ok)
+throw Error(
+"Surprise not found"
+);
+
+
+let data =
+await response.json();
+
+
+/*
+Different possible API response formats
+are handled here.
+*/
+
+surpriseData =
+data.payload ||
+data.surprise?.payload ||
+data;
+
+
+if(!surpriseData.name)
+throw Error(
+"Invalid surprise data"
+);
+
+
+$("creatorPage")
+.classList
+.add("hidden");
+
+$("surprisePage")
+.classList
+.remove("hidden");
+
+
+$("receiverLanguage").value =
+surpriseData.language ||
+"English";
+
+
+showStep(0);
+
+return true;
+
+
+}catch(error){
+
+console.error(error);
+
+$("creatorPage")
+.classList
+.add("hidden");
+
+$("surprisePage")
+.classList
+.remove("hidden");
+
+$("surpriseContent").innerHTML = `
+
+<h1>Oops 😔</h1>
+
+<p>
+This birthday surprise could not be loaded.
+</p>
+
+<p>
+Please check that the link is correct.
+</p>
+
+`;
+
+return true;
+
+}
+
+}
+
+
+/* ================= SURPRISE FLOW ================= */
+
+function getLang(){
+
+return translations[
+$("receiverLanguage").value
+] || translations.English;
+
+}
+
+
+function showStep(step){
+
+currentStep = step;
+
+let t = getLang();
+
+let data = surpriseData;
+
+let content =
+$("surpriseContent");
+
+
+/* STEP 0 */
+
+if(step===0){
+
+content.innerHTML = `
+
+<div class="big-title">
+🎁
+</div>
+
+<h1 class="big-title">
+${escapeHtml(data.name)}
+</h1>
+
+<h2>
+${escapeHtml(t.birthday)}! ❤️
+</h2>
+
+<p>
+${escapeHtml(
+data.message || ""
+)}
+</p>
+
+<button
+class="next-btn"
+onclick="showStep(1)"
+>
+${escapeHtml(t.next)}
+</button>
+
+`;
+
+return;
+
+}
+
+
+/* STEP 1 */
+
+if(step===1){
+
+content.innerHTML = `
+
+<h1>
+🎂
+</h1>
+
+<h2>
+${escapeHtml(t.ready)}
+</h2>
+
+<p>
+${escapeHtml(
+data.memoryLine ||
+t.camera
+)}
+</p>
+
+<button
+class="next-btn"
+onclick="startCamera()"
+>
+📸 Start Camera
+</button>
+
+`;
+
+return;
+
+}
+
+
+/* STEP 2 */
+
+if(step===2){
+
+content.innerHTML = `
+
+<h2>
+${escapeHtml(t.camera)}
+</h2>
+
+<div class="camera-box">
+
+<video
+id="camera"
+autoplay
+playsinline
+muted
+></video>
+
+</div>
+
+<div class="candle-area" id="candleArea">
+
+<div class="flame" id="flame">
+🔥
+</div>
+
+<div class="cake">
+🎂
+</div>
+
+</div>
+
+<p class="status" id="blowStatus">
+${escapeHtml(t.blow)}
+</p>
+
+<button
+class="next-btn hidden"
+id="afterBlow"
+onclick="showStep(3)"
+>
+${escapeHtml(t.next)}
+</button>
+
+`;
+
+return;
+
+}
+
+
+/* STEP 3 */
+
+if(step===3){
+
+stopCamera();
+
+content.innerHTML = `
+
+<div class="big-title">
+🎉
+</div>
+
+<h1>
+${escapeHtml(t.birthday)}
+</h1>
+
+<h2>
+${escapeHtml(data.name)} ❤️
+</h2>
+
+<p>
+${escapeHtml(
+data.finalGreeting ||
+t.final
+)}
+</p>
+
+<button
+class="next-btn"
+onclick="showStep(4)"
+>
+${escapeHtml(t.next)}
+</button>
+
+`;
+
+return;
+
+}
+
+
+/* STEP 4 */
+
+if(step===4){
+
+let memories =
+Array.isArray(data.memories)
+? data.memories
+: [];
+
+
+let html = `
+
+<h1>
+💖
+</h1>
+
+<h2>
+${escapeHtml(t.memories)}
+</h2>
+
+<p>
+${escapeHtml(
+data.memoryLine || ""
+)}
+</p>
+`;
+
+
+if(memories.length===0){
+
+html += `
+
+<p>
+No memories were added.
+</p>
+
+`;
+
+}else{
+
+memories.forEach((memory,index)=>{
+
+if(!memory || !memory.image)
+return;
+
+html += `
+
+<div class="memory-card">
+
+<img
+src="${memory.image}"
+alt="Memory ${index+1}"
+>
+
+${
+memory.caption
+?
+`<div class="memory-caption">
+${escapeHtml(memory.caption)}
+</div>`
+:
+""
+}
+
+</div>
+
+`;
+
+});
+
+}
+
+
+html += `
+
+<button
+class="next-btn"
+onclick="showStep(5)"
+>
+${escapeHtml(t.next)}
+</button>
+
+`;
+
+
+content.innerHTML = html;
+
+return;
+
+}
+
+
+/* STEP 5 */
+
+if(step===5){
+
+content.innerHTML = `
+
+<h1>
+💗
+</h1>
+
+<h2>
+${escapeHtml(t.final)}
+</h2>
+
+<p>
+${escapeHtml(
+data.finalGreeting ||
+t.final
+)}
+</p>
+
+${
+data.finalImage
+?
+`
+<img
+class="final-image"
+src="${data.finalImage}"
+alt="Final memory"
+>
+`
+:
+""
+}
+
+<h2>
+${escapeHtml(t.thanks)}
+</h2>
+
+`;
+
+}
+
+}
+
+
+/* ================= CAMERA + BLOW DETECTION ================= */
+
+async function startCamera(){
+
+showStep(2);
+
+try{
+
+cameraStream =
+await navigator.mediaDevices.getUserMedia({
+
+video:{
+facingMode:"user"
+},
+
+audio:true
+
+});
+
+
+let video =
+document.getElementById("camera");
+
+video.srcObject =
+cameraStream;
+
+
+/*
+Use microphone volume to detect
+a strong blow.
+*/
+
+let AudioContext =
+window.AudioContext ||
+window.webkitAudioContext;
+
+if(!AudioContext){
+
+document.getElementById(
+"blowStatus"
+).textContent =
+"Camera opened. Tap Next when done.";
+
+return;
+
+}
+
+
+let audioContext =
+new AudioContext();
+
+let source =
+audioContext
+.createMediaStreamSource(
+cameraStream
+);
+
+let analyser =
+audioContext.createAnalyser();
+
+analyser.fftSize = 512;
+
+source.connect(analyser);
+
+let dataArray =
+new Uint8Array(
+analyser.fftSize
+);
+
+
+let startTime =
+Date.now();
+
+
+function detectBlow(){
+
+if(blowDetected)
+return;
+
+
+analyser.getByteTimeDomainData(
+dataArray
+);
+
+
+let sum=0;
+
+for(
+let i=0;
+i<dataArray.length;
+i++
+){
+
+let value =
+(dataArray[i]-128)/128;
+
+sum += value*value;
+
+}
+
+
+let rms =
+Math.sqrt(
+sum/dataArray.length
+);
+
+
+/*
+Strong microphone burst.
+*/
+
+if(
+rms > 0.12 &&
+Date.now()-startTime > 1200
+){
+
+blowDetected=true;
+
+blowOut();
+
+return;
+
+}
+
+
+requestAnimationFrame(
+detectBlow
+);
+
+}
+
+
+detectBlow();
+
+
+}catch(error){
+
+console.error(error);
+
+document.getElementById(
+"blowStatus"
+).textContent =
+"Camera/microphone permission was not given. You can still continue.";
+
+let btn =
+document.getElementById(
+"afterBlow"
+);
+
+if(btn)
+btn.classList.remove("hidden");
+
+}
+
+}
+
+
+function blowOut(){
+
+let candle =
+document.getElementById(
+"candleArea"
+);
+
+if(candle)
+candle.classList.add(
+"candle-off"
+);
+
+
+let status =
+document.getElementById(
+"blowStatus"
+);
+
+if(status)
+status.textContent =
+"🎉 Yay! Candle बुझ गई! ❤️";
+
+
+let button =
+document.getElementById(
+"afterBlow"
+);
+
+if(button)
+button.classList.remove(
+"hidden"
+);
+
+
+setTimeout(
+stopCamera,
+1500
+);
+
+}
+
+
+function stopCamera(){
+
+if(cameraStream){
+
+cameraStream
+.getTracks()
+.forEach(
+track=>track.stop()
+);
+
+cameraStream=null;
+
+}
+
+}
+
+
+/* ================= LANGUAGE CHANGE ================= */
+
+$("receiverLanguage").onchange = () => {
+
+if(surpriseData)
+showStep(currentStep);
+
+};
+
+
+/* ================= ESCAPE HTML ================= */
+
+function escapeHtml(value){
+
+return String(value ?? "")
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+
+/* ================= START ================= */
 
 loadSurprise();
-</script></body></html>
+
+</script>
+
+</body>
+</html>
